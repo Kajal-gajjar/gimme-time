@@ -26,5 +26,13 @@ functions:
               querystrings:
                 tz: true
 
+
+custom:
+  package:
+    command: npm run package
+    include:
+      - .serverless/**
+    excludeDevDependencies: true
+
 plugins:
   - serverless-scriptable-plugin

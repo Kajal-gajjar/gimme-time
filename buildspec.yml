@@ -13,8 +13,9 @@ phases:
       - npm run-script lint
       - npm run test
       - mkdir -p target/stg
-      - mkdir -p target/prod
-      - serverless deploy --stage $env --package $CODEBUILD_SRC_DIR/target/$env -v -r ap-south-1
+      - mkdir target/prod
+      - serverless package --package target/stg --stage stg -v -r ap-south-1
+      - serverless package --package target/prod --stage prod -v -r ap-south-1
 
 artifacts:
   files:

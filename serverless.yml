@@ -6,10 +6,17 @@ provider:
   stage: dev
   environment:
     STAGE: ${opt:stage}
+  iamRoleStatements:
+    - Effect: Allow
+    - Action:
+        s3: PutObject,
+        s3: GetObject,
+        s3: DeleteObject
+    - Resource:  "arn:aws:s3:::codepipeline-ap-south-1-450231656010/gimme-time-pipeline/BuildArtif/*"
 
 functions:
   gimmetime:
-    handler: handler.gimmetime
+    handler: handler.handler
     events:
       - http:
           path: /time
@@ -18,13 +25,6 @@ functions:
             parameters:
               querystrings:
                 tz: true
-
-custom:
-  package:
-    command: npm run package
-    include:
-      - .serverless/**
-    excludeDevDependencies: true
 
 plugins:
   - serverless-scriptable-plugin

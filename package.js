@@ -13,7 +13,7 @@ output.on('close', () => {
   const uploadParams = {
     Bucket: 'gimme-time-artifact-v1',
     Key: 'gimme-time-dev.zip',
-    Body: fs.createReadStream('.serverless/gimme-time-dev.zip'),
+    Body: fs.createReadStream('.serverless/gimme-time-dev.zip')
   };
   s3.upload(uploadParams, (err, data) => {
     if (err) {

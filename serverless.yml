@@ -3,6 +3,7 @@ service: gimme-time
 provider:
   name: aws
   runtime: nodejs16.x
+  stage: dev
   environment:
     STAGE: ${opt:stage}
 
@@ -17,3 +18,13 @@ functions:
             parameters:
               querystrings:
                 tz: true
+
+custom:
+  package:
+    command: npm run package
+    include:
+      - .serverless/**
+    excludeDevDependencies: true
+
+plugins:
+  - serverless-scriptable-plugin

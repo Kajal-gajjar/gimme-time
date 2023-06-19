@@ -3,10 +3,8 @@ version: 0.2
 phases:
   install:
     commands:
-    - rm package-lock.json
     - npm install --silent --no-progress -g npm
     - npm install --silent --no-progress -g serverless
-    - npm --version
   pre_build:
     commands:
     - npm install --silent --no-progress

@@ -3,22 +3,22 @@ version: 0.2
 phases:
   install:
     commands:
-      - npm install --silent --no-progress -g npm
-      - npm install --silent --no-progress -g serverless
+    - npm install --silent --no-progress -g npm
+    - npm install --silent --no-progress -g serverless
   pre_build:
     commands:
-      - npm install --silent --no-progress
+    - npm install --silent --no-progress
   build:
     commands:
-      - npm run-script lint
-      - npm run test
-      - mkdir -p target/stg
-      - mkdir -p target/prod
-      - serverless package --package target/stg --stage stg -v -r ap-south-1
-      - serverless package --package target/prod --stage prod -v -r ap-south-1
+    - npm run-script lint
+    - npm run test
+    - mkdir -p target/stg
+    - mkdir target/prod
+    - serverless package --package target/stg --stage stg -v -r ap-south-1
+    - serverless package --package target/prod --stage prod -v -r ap-south-1
 
 artifacts:
   files:
-    - target/**/*
-    - serverless.yml
-    - deploy.sh
+  - target/**/*
+  - serverless.yml
+  - deploy.sh
